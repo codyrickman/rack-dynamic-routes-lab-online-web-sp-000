@@ -3,6 +3,15 @@ class Application
     resp = Rack::Response.new
     req = Rack::Request.new(env)
     if req.path== "/items/"
+      item = Item.findByName(req.params["item"])
+      if (item != nil)
+        resp.write("#{item.name} #{item.price}")
+        resp.status = 200
+      else
+        resp.write("Item not found")
+        resp.status = 400
+      end
+
     else
       resp.write("Route not found")
       resp.status = 404
