@@ -14,5 +14,5 @@ class Item
       end
     end
     return nil
-  endß
+  end
 end
