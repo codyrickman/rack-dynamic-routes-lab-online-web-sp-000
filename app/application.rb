@@ -3,7 +3,7 @@ class Application
     resp = Rack::Response.new
     req = Rack::Request.new(env)
     if req.path.match("/items/")
-      item = Item.findByName(req.params["item"])
+      item = Item.findByName(rreq.path.split("/items/").last)
       if (item != nil)
         resp.write("#{item.name} #{item.price}")
         resp.status = 200
