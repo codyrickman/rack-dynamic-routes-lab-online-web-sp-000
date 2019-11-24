@@ -2,7 +2,7 @@ class Application
   def call(env)
     resp = Rack::Response.new
     req = Rack::Request.new(env)
-    if req.path== "/items/"
+    if req.path.match("/items/")
       item = Item.findByName(req.params["item"])
       if (item != nil)
         resp.write("#{item.name} #{item.price}")
